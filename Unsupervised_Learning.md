@@ -44,6 +44,8 @@
 
 By providing a deeper technical understanding of these concepts, practitioners can better leverage unsupervised machine learning techniques to extract meaningful insights from unlabeled data.
 
+To perform Principal Component Analysis (PCA) using Python's scikit-learn library and visualize the results using matplotlib and seaborn the following codes will be useful
+
 ```python
 import numpy as np
 import matplotlib.pyplot as plt 
