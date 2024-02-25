@@ -246,5 +246,222 @@ plt.show()
 Output:![a2](https://github.com/Nandana-Ajayan/Python-for-ML/assets/160465008/f744d737-6326-4315-bece-c701f09b17e7)
 ![a2](https://github.com/Nandana-Ajayan/Python-for-ML/assets/160465008/f6bcf23f-483c-4da3-b8ba-94efb989d040)
 
+### Example problem:
+***problem statement**
+2.Analyse the car data  problem using linear regression method
+#importing pickle to save the model
 
+```python
+import pickle as pickle
+```
+# Specify the path to your CSV file
+```python
+csv_file_path = 'car_dataset.csv'
+```
+# import all necessary packages
+```python
+import pandas as pd
+```
+# load data to a new dataframe
+```python
+df = pd.read_csv(csv_file_path)
+```
+# check the shape
+```pyhton
+df.shape
+```
+Output:
+(205, 26)
+
+# first five rows of the dataframe
+```python
+df.head()
+```
+Output:
+
+# describe the dataframe with some statistical info
+```python
+df.describe()
+```
+Output:
+# check data types in the dataframe
+```pyhton
+df.info()
+```
+Output:
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 205 entries, 0 to 204
+Data columns (total 26 columns):
+ #   Column            Non-Null Count  Dtype  
+---  ------            --------------  -----  
+ 0   ID                205 non-null    int64  
+ 1   symboling         205 non-null    int64  
+ 2   name              205 non-null    object 
+ 3   fueltypes         205 non-null    object 
+ 4   aspiration        205 non-null    object 
+ 5   doornumbers       205 non-null    object 
+ 6   carbody           205 non-null    object 
+ 7   drivewheels       205 non-null    object 
+ 8   enginelocation    205 non-null    object 
+ 9   wheelbase         205 non-null    float64
+ 10  carlength         205 non-null    float64
+ 11  carwidth          205 non-null    float64
+ 12  carheight         205 non-null    float64
+ 13  curbweight        205 non-null    int64  
+ 14  enginetype        205 non-null    object 
+ 15  cylindernumber    205 non-null    object 
+ 16  enginesize        205 non-null    int64  
+ 17  fuelsystem        205 non-null    object 
+ 18  boreratio         205 non-null    float64
+ 19  stroke            205 non-null    float64
+ 20  compressionratio  205 non-null    float64
+ 21  horsepower        205 non-null    int64  
+ 22  peakrpm           205 non-null    int64  
+ 23  citympg           205 non-null    int64  
+ 24  highwaympg        205 non-null    int64  
+ 25  price             205 non-null    float64
+dtypes: float64(8), int64(8), object(10)
+memory usage: 41.8+ KB
+# check unique data for each feature in the dataframe
+```python
+df.nunique()
+```
+Output:
+ID                  205
+symboling             6
+name                147
+fueltypes             2
+aspiration            2
+doornumbers           2
+carbody               5
+drivewheels           3
+enginelocation        2
+wheelbase            53
+carlength            75
+carwidth             44
+carheight            49
+curbweight          171
+enginetype            7
+cylindernumber        7
+enginesize           44
+fuelsystem            8
+boreratio            38
+stroke               37
+compressionratio     32
+horsepower           59
+peakrpm              23
+citympg              29
+highwaympg           30
+price               189
+dtype: int64
+# column names of the dataframe
+```python
+df.columns()
+```
+Output:
+Index(['ID', 'symboling', 'name', 'fueltypes', 'aspiration', 'doornumbers',
+       'carbody', 'drivewheels', 'enginelocation', 'wheelbase', 'carlength',
+       'carwidth', 'carheight', 'curbweight', 'enginetype', 'cylindernumber',
+       'enginesize', 'fuelsystem', 'boreratio', 'stroke', 'compressionratio',
+       'horsepower', 'peakrpm', 'citympg', 'highwaympg', 'price'],
+      dtype='object')
+
+
+### Now, we can prepare the data for the linear regression model
+# create a new simple dataframe using the existing one
+```python
+new_df = df[['enginesize', 'price']]
+new_df
+```
+Output:
+# check the distribution of data by plotting as scatter
+```python
+new_df.plot(x='enginesize', y='price', kind='scatter')
+```
+Output:
+# compare below plot with the previous one
+```python
+df.plot(x='fueltypes', y='price', kind='scatter')
+```
+Output:
+# define x and y by using the new dataframe
+```python
+x = new_df['enginesize']
+y = new_df['price']
+```
+### Now Machine Learning
+# import ML related packages of sklearn
+```python
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
+```
+# split the data as train and test
+```python
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=0)
+```
+#shapes of splitted data - sizes of the X_train and Y_train should be same. Also, tests.
+```python
+print("X_train:",x_train.shape)
+print("X_test:",x_test.shape)
+print("Y_train:",y_train.shape)
+print("Y_test:",y_test.shape)
+```
+Output:
+X_train: (164,)
+X_test: (41,)
+Y_train: (164,)
+Y_test: (41,)
+
+# create a linear regression model
+```python
+model = LinearRegression()
+```
+# train the model using training data
+ since we have only one independent variable, you should use 'values.reshape(-1,1)'. Otherwise, x_train is enough.
+```python
+model.fit(x_train.values.reshape(-1,1), y_train)
+```
+# print coefficient
+```python
+model.coef_
+```
+Output:
+array([164.31545172])
+
+# print y_intercept | bias
+```python
+model.intercept_
+```
+Output:
+-7613.370939489788
+
+# make predictions using test data
+```python
+y_pred = model.predict(x_test.values.reshape(-1,1))
+```
+# let's calculate the metrics
+ MSE
+ ```pyhton
+mse = mean_squared_error(y_test, y_pred)
+print("MSE --> ", mse)
+```
+Output:
+MSE -->  16835544.03813768
+
+# RMSE
+```python
+import math
+rmse = math.sqrt(mse)
+print("RMSE --> ", rmse)
+```
+Output:
+RMSE -->  4103.113944084137
+
+# MAE
+```python
+mae = mean_absolute_erroRMSE -->  4103.113944084137r(y_test, y_pred)
+print("MAE --> ", mae)
+```
+MAE -->  3195.0312395000437
 
