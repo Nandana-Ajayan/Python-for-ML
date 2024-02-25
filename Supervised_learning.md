@@ -78,7 +78,7 @@ sion
 
 ### Example problem:
 ***problem statement**
-Analyse the California housing problem using linear regression method
+1.Analyse the California housing problem using linear regression method
 
 step-1:importinhg necessary libraries
 ```python
