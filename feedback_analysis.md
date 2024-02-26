@@ -212,7 +212,8 @@ ax.set_title(label = "Resourse Person", fontsize = 20,color='Brown',pad=20);
 ### Set title for the pie chart
 ``ax.set_title(label="Resourse Person", fontsize=20, color='Brown', pad=20)``
 This code utilizes Matplotlib and Seaborn to generate a side-by-side visualization of the distribution of a categorical variable ("Resourse Person") in the DataFrame df_class. The first subplot displays a count plot (bar chart), while the second subplot presents a pie chart. Both charts provide insights into the frequency and proportion of different categories in the "Resourse Person" column.
-Output:![pie chart](https://github.com/Nandana-Ajayan/Python-for-ML/assets/160465008/ba49a4c7-1f9c-4c1c-af33-5a36196b1cc0)
+Output:![image](https://github.com/Nandana-Ajayan/Python-for-ML/assets/160465008/a5f7ca79-0695-4d2c-9e45-8fa5f1ff364d)
+
 ### Step-5:Creating a summary of responses
  A box and whisker plot or diagram (otherwise known as a boxplot), is a graph summarising a set of data. The shape of the boxplot shows how the data is distributed and it also shows any outliers. It is a useful way to compare different sets of data as you can draw more than one boxplot per graph.
  In this step we are creating box plot on various attributes and resource persons.
@@ -221,34 +222,36 @@ Output:![pie chart](https://github.com/Nandana-Ajayan/Python-for-ML/assets/16046
 sns.boxplot(y=df_class['Resourse Person'],x=df_class['Content Quality'])
 plt.show()
 ```
-Output:![rp,cq](https://github.com/Nandana-Ajayan/Python-for-ML/assets/160465008/3b8dc985-649d-4e0e-a527-43e545c307f7)
+Output:![image (1)](https://github.com/Nandana-Ajayan/Python-for-ML/assets/160465008/558831be-2c28-49f5-9c74-c29ffb2daf7d)
 
 2)creating boxplot on Effectiveness v/s Resource person
 ```python
 sns.boxplot(y=df_class['Resourse Person'],x=df_class['Content Quality'])
 plt.show()
 ```
-Outpu![rp ef](https://github.com/Nandana-Ajayan/Python-for-ML/assets/160465008/c8f13a2d-1ddf-4914-97a8-9f16ca3a8778)
-t:
+Output:![image (2)](https://github.com/Nandana-Ajayan/Python-for-ML/assets/160465008/6823cf71-c63f-464f-b944-659ab2b6a24f)
+
 3)creating boxplot on Relevance v/s Resource person
 ```python
 sns.boxplot(y=df_class['Resourse Person'],x=df_class['Content Quality'])
 plt.show()
 ```
-Output:![rp , re](https://github.com/Nandana-Ajayan/Python-for-ML/assets/160465008/51863a44-33fe-4f45-9963-76eb4323af07)
+Output:![image (3)](https://github.com/Nandana-Ajayan/Python-for-ML/assets/160465008/f31133c7-85e0-41c1-a7f9-9adcb123ea16)
+
 4)creating boxplot on Overall Organization v/s Resource person
 ```python
 sns.boxplot(y=df_class['Resourse Person'],x=df_class['Content Quality'])
 plt.show()
 ```
-Output:![rp,oo](https://github.com/Nandana-Ajayan/Python-for-ML/assets/160465008/2dae80e1-181e-48b8-ba1e-93728d35b5b1)
+Output:![image (4)](https://github.com/Nandana-Ajayan/Python-for-ML/assets/160465008/87562a4a-d892-440c-9806-4dcd73f1f4cb)
+
 5)creating boxplot on Branch  v/s Content quality
 
 ```python
 sns.boxplot(y=df_class['Resourse Person'],x=df_class['Content Quality'])
 plt.show()
 ```
-Output:![branch cq](https://github.com/Nandana-Ajayan/Python-for-ML/assets/160465008/4216d036-7835-4790-b0ce-91d20120755c)
+Output:![image (5)](https://github.com/Nandana-Ajayan/Python-for-ML/assets/160465008/0901e65d-80a8-4f3a-80df-9c08c81a481c)
 
 ## Step-6:Unsupervised machine learning
 Using K-means Clustering to identify segmentation over student's satisfaction.
@@ -371,7 +374,6 @@ plt.title('K-means Clustering')
 plt.show()
 ```
 Output:
-![clustering visualizastion](https://github.com/Nandana-Ajayan/Python-for-ML/assets/160465008/baa855ab-c4a1-47a8-943b-a8f8194e16b7)
-
+![image (6)](https://github.com/Nandana-Ajayan/Python-for-ML/assets/160465008/ae9de1de-70c2-4cb1-b0da-0b7bda81b4fe)
 
 
