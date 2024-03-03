@@ -585,7 +585,7 @@ By passing in axis=0, we're returning an array of sums along the vertical axis, 
 arr_2d.shape
 
 
-## 1.matplotlib.py LIBRRARY
+#  2.matplotlib.py LIBRRARY
 # Matplotlib: A Comprehensive Data Visualization Library
 
 Matplotlib is a comprehensive library for creating static, animated, and interactive visualizations in Python. It is widely used for producing high-quality plots, charts, and figures for various scientific, engineering, and data analysis applications. Matplotlib provides a MATLAB-like interface and is highly customizable, allowing users to create a wide range of visualizations with ease.
@@ -629,3 +629,818 @@ Matplotlib can be used in interactive environments such as Jupyter notebooks, al
 Matplotlib is highly extensible and customizable. Users can create custom plot types, styles, and functionalities by extending Matplotlib's functionality or by utilizing additional toolkits and libraries built on top of Matplotlib, such as Seaborn, pandas plotting, and mpld3 for interactive web-based visualizations.
 
 Matplotlib is a powerful and versatile library for data visualization in Python, making it a popular choice among data scientists, researchers, engineers, and analysts for exploring and communicating data insights.
+
+ # Matplotlib: A Comprehensive Data Visualization Library
+## Introduction
+Matplotlib is the "grandfather" library of data visualization with Python. It was created by John Hunter. He created it to try to replicate MatLab's (another programming language) plotting capabilities in Python. 
+Matplotlib is a comprehensive library for creating static, animated, and interactive visualizations in Python. It is widely used for producing high-quality plots, charts, and figures for various scientific, engineering, and data analysis applications. Matplotlib provides a MATLAB-like interface and is highly customizable, allowing users to create a wide range of visualizations with ease.
+
+It is an excellent 2D and 3D graphics library for generating scientific figures.
+
+Some of the major Pros of Matplotlib are:
+
+-Generally easy to get started for simple plots
+-Support for custom labels and texts
+-Great control of every element in a figure
+-High-quality output in many formats
+-Very customizable in general
+-Matplotlib allows you to create reproducible figures programmatically.
+
+## Key Features and Components of Matplotlib:
+
+### Pyplot Interface:
+The `matplotlib.pyplot` module provides a MATLAB-like interface for creating plots. It simplifies the process of creating common types of plots such as line plots, scatter plots, histograms, bar charts, etc.
+
+### Object-Oriented Interface:
+Matplotlib also offers an object-oriented interface, which gives more control and flexibility over the plots. Users can directly work with figure and axis objects to create and customize plots in a more granular manner.
+
+### Supported Plot Types:
+Matplotlib supports a wide range of plot types, including:
+- Line plots
+- Scatter plots
+- Histograms
+- Bar charts
+- Pie charts
+- Box plots
+- Contour plots
+- Heatmaps
+- 3D plots (with mplot3d toolkit)
+
+### Customization:
+Matplotlib allows extensive customization of plots. Users can control aspects such as colors, line styles, markers, labels, titles, axis limits, grid lines, legends, annotations, and more.
+
+### Multiple Output Formats:
+Matplotlib can save plots in various formats such as PNG, PDF, SVG, and EPS, making it easy to integrate plots into documents, reports, or presentations.
+
+### Integration with NumPy:
+Matplotlib seamlessly integrates with NumPy, a fundamental library for numerical computing in Python. This integration allows users to plot NumPy arrays directly and perform mathematical operations on data before plotting.
+
+### Support for LaTeX:
+Matplotlib supports LaTeX for mathematical expressions in labels, titles, annotations, and other text elements, enabling high-quality typesetting of mathematical symbols and equations.
+
+### Interactive Features:
+Matplotlib can be used in interactive environments such as Jupyter notebooks, allowing users to dynamically explore and manipulate plots.
+
+### Extensibility:
+Matplotlib is highly extensible and customizable. Users can create custom plot types, styles, and functionalities by extending Matplotlib's functionality or by utilizing additional toolkits and libraries built on top of Matplotlib, such as Seaborn, pandas plotting, and mpld3 for interactive web-based visualizations.
+
+## Installation
+If you are using our environment, its already installed for you. If you are not using our environment (not recommended), you'll need to install matplotlib first with either:
+
+conda install matplotlib
+or
+
+pip install matplotlib
+
+## Importing
+Import the matplotlib.pyplot module under the name plt (the tidy way):
+```python
+#COMMON MISTAKE!
+#DON'T FORGET THE .PYPLOT part
+​
+import matplotlib.pyplot as plt
+```
+NOTE: If you are using an older version of jupyter, you need to run a "magic" command to see the plots inline with the notebook. Users of jupyter notebook 1.0 and above, don't need to run the cell below:
+```python
+%matplotlib inline
+```
+NOTE: For users running .py scripts in an IDE like PyCharm or Sublime Text Editor. You will not see the plots in a notebook, instead if you are using another editor, you'll use: plt.show() at the end of all your plotting commands to have the figure pop up in another window.
+
+## Basic Example
+Let's walk through a very simple example using two numpy arrays:
+
+### Basic Array Plot
+Let's walk through a very simple example using two numpy arrays. You can also use lists, but most likely you'll be passing numpy arrays or pandas columns (which essentially also behave like arrays).
+
+#### The data we want to plot:
+```python
+import numpy as np
+x = np.arange(0,10)
+y = 2*x
+x
+```
+array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+```python
+y
+```
+array([ 0,  2,  4,  6,  8, 10, 12, 14, 16, 18])
+
+## Using Matplotlib with plt.plot() function calls
+### Basic Matplotlib Commands
+We can create a very simple line plot using the following ( I encourage you to pause and use Shift+Tab along the way to check out the document strings for the functions we are using).
+```python
+plt.plot(x, y) 
+plt.xlabel('X Axis Title Here')
+plt.ylabel('Y Axis Title Here')
+plt.title('String Title Here')
+plt.show() # Required for non-jupyter users , but also removes Out[] info
+```
+![1](https://github.com/RiziaPrabin/Python-for-ML/assets/160464556/ad2190c7-9838-49be-a34d-6a834c709d13)
+
+### Editing more figure parameters
+```python
+plt.plot(x, y) 
+plt.xlabel('X Axis Title Here')
+plt.ylabel('Y Axis Title Here')
+plt.title('String Title Here')
+plt.xlim(0,6) # Lower Limit, Upper Limit
+plt.ylim(0,12) # Lower Limit, Upper Limit
+plt.show() # Required for non-jupyter users , but also removes Out[] info
+```
+![2](https://github.com/RiziaPrabin/Python-for-ML/assets/160464556/21c2709a-1451-4a34-8595-eca03f58ff56)
+
+## Exporting a plot
+```python
+help(plt.savefig)
+```
+Help on function savefig in module matplotlib.pyplot:
+
+savefig(*args, **kwargs)
+    Save the current figure.
+    
+    Call signature::
+    
+      savefig(fname, dpi=None, facecolor='w', edgecolor='w',
+              orientation='portrait', papertype=None, format=None,
+              transparent=False, bbox_inches=None, pad_inches=0.1,
+              frameon=None, metadata=None)
+    
+    The output formats available depend on the backend being used.
+    
+    Parameters
+    ----------
+    
+    fname : str or PathLike or file-like object
+        A path, or a Python file-like object, or
+        possibly some backend-dependent object such as
+        `matplotlib.backends.backend_pdf.PdfPages`.
+    
+        If *format* is not set, then the output format is inferred from
+        the extension of *fname*, if any, and from :rc:`savefig.format`
+        otherwise.  If *format* is set, it determines the output format.
+    
+        Hence, if *fname* is not a path or has no extension, remember to
+        specify *format* to ensure that the correct backend is used.
+    
+    Other Parameters
+    ----------------
+    
+    dpi : [ *None* | scalar > 0 | 'figure' ]
+        The resolution in dots per inch.  If *None*, defaults to
+        :rc:`savefig.dpi`.  If 'figure', uses the figure's dpi value.
+    
+    quality : [ *None* | 1 <= scalar <= 100 ]
+        The image quality, on a scale from 1 (worst) to 95 (best).
+        Applicable only if *format* is jpg or jpeg, ignored otherwise.
+        If *None*, defaults to :rc:`savefig.jpeg_quality` (95 by default).
+        Values above 95 should be avoided; 100 completely disables the
+        JPEG quantization stage.
+    
+    optimize : bool
+        If *True*, indicates that the JPEG encoder should make an extra
+        pass over the image in order to select optimal encoder settings.
+        Applicable only if *format* is jpg or jpeg, ignored otherwise.
+        Is *False* by default.
+    
+    progressive : bool
+        If *True*, indicates that this image should be stored as a
+        progressive JPEG file. Applicable only if *format* is jpg or
+        jpeg, ignored otherwise. Is *False* by default.
+    
+    facecolor : color spec or None, optional
+        The facecolor of the figure; if *None*, defaults to
+        :rc:`savefig.facecolor`.
+    
+    edgecolor : color spec or None, optional
+        The edgecolor of the figure; if *None*, defaults to
+        :rc:`savefig.edgecolor`
+    
+    orientation : {'landscape', 'portrait'}
+        Currently only supported by the postscript backend.
+    
+    papertype : str
+        One of 'letter', 'legal', 'executive', 'ledger', 'a0' through
+        'a10', 'b0' through 'b10'. Only supported for postscript
+        output.
+    
+    format : str
+        The file format, e.g. 'png', 'pdf', 'svg', ... The behavior when
+        this is unset is documented under *fname*.
+    
+    transparent : bool
+        If *True*, the axes patches will all be transparent; the
+        figure patch will also be transparent unless facecolor
+        and/or edgecolor are specified via kwargs.
+        This is useful, for example, for displaying
+        a plot on top of a colored background on a web page.  The
+        transparency of these patches will be restored to their
+        original values upon exit of this function.
+    
+    bbox_inches : str or `~matplotlib.transforms.Bbox`, optional
+        Bbox in inches. Only the given portion of the figure is
+        saved. If 'tight', try to figure out the tight bbox of
+        the figure. If None, use savefig.bbox
+    
+    pad_inches : scalar, optional
+        Amount of padding around the figure when bbox_inches is
+        'tight'. If None, use savefig.pad_inches
+    
+    bbox_extra_artists : list of `~matplotlib.artist.Artist`, optional
+        A list of extra artists that will be considered when the
+        tight bbox is calculated.
+    
+    metadata : dict, optional
+        Key/value pairs to store in the image metadata. The supported keys
+        and defaults depend on the image format and backend:
+    
+        - 'png' with Agg backend: See the parameter ``metadata`` of
+          `~.FigureCanvasAgg.print_png`.
+        - 'pdf' with pdf backend: See the parameter ``metadata`` of
+          `~.backend_pdf.PdfPages`.
+        - 'eps' and 'ps' with PS backend: Only 'Creator' is supported.
+    
+    pil_kwargs : dict, optional
+        Additional keyword arguments that are passed to `PIL.Image.save`
+        when saving the figure.  Only applicable for formats that are saved
+        using Pillow, i.e. JPEG, TIFF, and (if the keyword is set to a
+        non-None value) PNG.
+```python
+plt.plot(x,y)
+plt.savefig('example.png')
+```
+
+![3](https://github.com/RiziaPrabin/Python-for-ML/assets/160464556/ab3aac25-e70a-4a7c-b028-78b95330797a)
+
+Import the matplotlib.pyplot module under the name plt (the tidy way):
+```python
+#COMMON MISTAKE!
+#DON'T FORGET THE .PYPLOT part
+​
+import matplotlib.pyplot as plt
+```
+NOTE: For users running .py scripts in an IDE like PyCharm or Sublime Text Editor. You will not see the plots in a notebook, instead if you are using another editor, you'll use: plt.show() at the end of all your plotting commands to have the figure pop up in another window.
+
+## Matplotlib Object Oriented Method
+Now that we've seen the basics, let's break it all down with a more formal introduction of Matplotlib's Object Oriented API. This means we will instantiate figure objects and then call methods or attributes from that object.
+
+### The Data
+```python
+import numpy as np
+a = np.linspace(0,10,11)
+b = a ** 4
+a
+```
+array([ 0.,  1.,  2.,  3.,  4.,  5.,  6.,  7.,  8.,  9., 10.])
+```python
+b
+```
+array([0.000e+00, 1.000e+00, 1.600e+01, 8.100e+01, 2.560e+02, 6.250e+02,
+       1.296e+03, 2.401e+03, 4.096e+03, 6.561e+03, 1.000e+04])
+```python
+x = np.arange(0,10)
+y = 2 * x
+x
+```
+array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+```python
+y
+```
+array([ 0,  2,  4,  6,  8, 10, 12, 14, 16, 18])
+## Creating a Figure
+The main idea in using the more formal Object Oriented method is to create figure objects and then just call methods or attributes off of that object. This approach is nicer when dealing with a canvas that has multiple plots on it.
+
+#Creates blank canvas
+fig = plt.figure()
+<Figure size 432x288 with 0 Axes>
+### NOTE: ALL THE COMMANDS NEED TO GO IN THE SAME CELL!
+
+To begin we create a figure instance. Then we can add axes to that figure:
+```python
+#Create Figure (empty canvas)
+
+fig = plt.figure()
+​
+#Add set of axes to figure
+axes = fig.add_axes([0, 0, 1, 1]) # left, bottom, width, height (range 0 to 1)
+​
+#Plot on that set of axes
+axes.plot(x, y)
+​
+plt.show()
+```
+![4](https://github.com/RiziaPrabin/Python-for-ML/assets/160464556/68556cd5-1e1a-4f81-9ad0-b7bbf4dc4aa4)
+```python
+#Create Figure (empty canvas)
+fig = plt.figure()
+​
+#Add set of axes to figure
+axes = fig.add_axes([0, 0, 1, 1]) # left, bottom, width, height (range 0 to 1)
+​
+#Plot on that set of axes
+axes.plot(a, b)
+​
+plt.show()
+```
+![5](https://github.com/RiziaPrabin/Python-for-ML/assets/160464556/666961e7-a699-49a0-95be-9c89a09741b1)
+
+### Adding another set of axes to the Figure
+So far we've only seen one set of axes on this figure object, but we can keep adding new axes on to it at any location and size we want. We can then plot on that new set of axes.
+```python
+type(fig)
+```
+matplotlib.figure.Figure
+Code is a little more complicated, but the advantage is that we now have full control of where the plot axes are placed, and we can easily add more than one axis to the figure. Note how we're plotting a,b twice here
+```python
+#Creates blank canvas
+fig = plt.figure()
+​
+axes1 = fig.add_axes([0, 0, 1, 1]) # Large figure
+axes2 = fig.add_axes([0.2, 0.2, 0.5, 0.5]) # Smaller figure
+​
+#Larger Figure Axes 1
+axes1.plot(a, b)
+​
+#Use set_ to add to the axes figure
+axes1.set_xlabel('X Label')
+axes1.set_ylabel('Y Label')
+axes1.set_title('Big Figure')
+​
+#Insert Figure Axes 2
+axes2.plot(a,b)
+axes2.set_title('Small Figure');
+```
+![6](https://github.com/RiziaPrabin/Python-for-ML/assets/160464556/3aa5e0f1-bca3-43ed-a0d0-9c7a32be71bd)
+
+Let's move the small figure and edit its parameters.
+```python
+#Creates blank canvas
+fig = plt.figure()
+​
+axes1 = fig.add_axes([0, 0, 1, 1]) # Large figure
+axes2 = fig.add_axes([0.2, 0.5, 0.25, 0.25]) # Smaller figure
+​
+#Larger Figure Axes 1
+axes1.plot(a, b)
+​
+#Use set_ to add to the axes figure
+axes1.set_xlabel('X Label')
+axes1.set_ylabel('Y Label')
+axes1.set_title('Big Figure')
+​
+#Insert Figure Axes 2
+axes2.plot(a,b)
+axes2.set_xlim(8,10)
+axes2.set_ylim(4000,10000)
+axes2.set_xlabel('X')
+axes2.set_ylabel('Y')
+axes2.set_title('Zoomed In');
+```
+![7](https://github.com/RiziaPrabin/Python-for-ML/assets/160464556/d665b98c-0d6c-4653-8248-4789cb69ee74)
+
+You can add as many axes on to the same figure as you want, even outside of the main figure if the length and width correspond to this.
+```python
+#Creates blank canvas
+fig = plt.figure()
+​
+axes1 = fig.add_axes([0, 0, 1, 1]) # Full figure
+axes2 = fig.add_axes([0.2, 0.5, 0.25, 0.25]) # Smaller figure
+axes3 = fig.add_axes([1, 1, 0.25, 0.25]) # Starts at top right corner!
+​
+#Larger Figure Axes 1
+axes1.plot(a, b)
+​
+#Use set_ to add to the axes figure
+axes1.set_xlabel('X Label')
+axes1.set_ylabel('Y Label')
+axes1.set_title('Big Figure')
+​
+#Insert Figure Axes 2
+axes2.plot(a,b)
+axes2.set_xlim(8,10)
+axes2.set_ylim(4000,10000)
+axes2.set_xlabel('X')
+axes2.set_ylabel('Y')
+axes2.set_title('Zoomed In');
+​
+#Insert Figure Axes 3
+axes3.plot(a,b)
+​```
+[<matplotlib.lines.Line2D at 0x1cd42ad2888>]
+![8](https://github.com/RiziaPrabin/Python-for-ML/assets/160464556/90f0bedb-940e-4ec4-b323-0b0fd73246fb)
+
+### Figure Parameters
+```python
+#Creates blank canvas
+fig = plt.figure(figsize=(12,8),dpi=100)
+​
+axes1 = fig.add_axes([0, 0, 1, 1])
+​
+axes1.plot(a,b)
+```
+[<matplotlib.lines.Line2D at 0x1cd42d53848>]
+![9](https://github.com/RiziaPrabin/Python-for-ML/assets/160464556/d342bfbb-9ab2-4d9a-ae33-cf1bfd8dba18)
+
+### Exporting a Figure
+```python
+fig = plt.figure()
+​
+axes1 = fig.add_axes([0, 0, 1, 1])
+​
+axes1.plot(a,b)
+axes1.set_xlabel('X')
+​
+# bbox_inches ='tight' automatically makes sure the bounding box is correct
+fig.savefig('figure.png',bbox_inches='tight')
+```
+![10](https://github.com/RiziaPrabin/Python-for-ML/assets/160464556/787a105f-b632-4c59-b817-9cbcfc270f55)
+```python
+# Creates blank canvas
+fig = plt.figure(figsize=(12,8))
+​
+axes1 = fig.add_axes([0, 0, 1, 1]) # Full figure
+axes2 = fig.add_axes([1, 1, 0.25, 0.25]) # Starts at top right corner!
+​
+# Larger Figure Axes 1
+axes1.plot(x,y)
+​
+# Insert Figure Axes 2
+axes2.plot(x,y)
+​
+fig.savefig('test.png',bbox_inches='tight')
+```
+![11](https://github.com/RiziaPrabin/Python-for-ML/assets/160464556/784c883b-77f5-490c-86e4-e46ed77001fb)
+## Matplotlib subplots
+import the matplotlib.pyplot module under the name plt (the tidy way):
+![12](https://github.com/RiziaPrabin/Python-for-ML/assets/160464556/2694643f-7fdb-447d-a07b-67daac5cafd9)
+```python
+# COMMON MISTAKE!
+# DON'T FORGET THE .PYPLOT part
+​
+import matplotlib.pyplot as plt
+```
+NOTE: For users running .py scripts in an IDE like PyCharm or Sublime Text Editor. You will not see the plots in a notebook, instead if you are using another editor, you'll use: plt.show() at the end of all your plotting commands to have the figure pop up in another window.
+
+### The Data
+``` python
+import numpy as np
+a = np.linspace(0,10,11)
+b = a ** 4
+a
+```
+array([ 0.,  1.,  2.,  3.,  4.,  5.,  6.,  7.,  8.,  9., 10.])
+```python
+b
+```
+array([0.000e+00, 1.000e+00, 1.600e+01, 8.100e+01, 2.560e+02, 6.250e+02,
+       1.296e+03, 2.401e+03, 4.096e+03, 6.561e+03, 1.000e+04]) 
+```python
+x = np.arange(0,10)
+y = 2 * x
+x
+```
+array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+```python
+y
+```
+array([ 0,  2,  4,  6,  8, 10, 12, 14, 16, 18])
+## plt.subplots()
+NOTE: Make sure you put the commands all together in the same cell as we do in this notebook and video!
+
+The plt.subplots() object will act as a more automatic axis manager. This makes it much easier to show multiple plots side by side.
+
+Note how we use tuple unpacking to grba both the Figure object and a numpy array of axes:
+```python
+#Use similar to plt.figure() except use tuple unpacking to grab fig and axes
+fig, axes = plt.subplots()
+​
+#Now use the axes object to add stuff to plot
+axes.plot(x, y, 'r')
+axes.set_xlabel('x')
+axes.set_ylabel('y')
+axes.set_title('title'); #; hides Out[]
+```
+![13](https://github.com/RiziaPrabin/Python-for-ML/assets/160464556/24759ebe-fcae-4c1a-be4f-d26e3bcd9576)
+
+### Adding rows and columns
+Then you can specify the number of rows and columns when creating the subplots() object:
+```python
+#Empty canvas of 1 by 2 subplots
+fig, axes = plt.subplots(nrows=1, ncols=2)
+```
+![14](https://github.com/RiziaPrabin/Python-for-ML/assets/160464556/3e5cad56-9704-42cb-a04f-844b504f9d74)
+```python
+#Axes is an array of axes to plot on
+axes
+```
+array([<matplotlib.axes._subplots.AxesSubplot object at 0x0000023521E20588>,
+       <matplotlib.axes._subplots.AxesSubplot object at 0x0000023521E5D8C8>],
+      dtype=object)
+```python
+axes.shape
+```
+(2,)
+```python
+#Empty canvas of 2 by 2 subplots
+fig, axes = plt.subplots(nrows=2, ncols=2)
+```
+![15](https://github.com/RiziaPrabin/Python-for-ML/assets/160464556/153abcc0-6d10-412a-b93d-e926ea08394c)
+```python
+axes
+```
+array([[<matplotlib.axes._subplots.AxesSubplot object at 0x0000023521ED5E48>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x0000023521F09D88>],
+       [<matplotlib.axes._subplots.AxesSubplot object at 0x0000023521F45308>,
+        <matplotlib.axes._subplots.AxesSubplot object at 0x0000023521F79D88>]],
+      dtype=object)
+```python
+axes.shape
+```
+(2, 2)
+### Plotting on axes objects
+Just as before, we simple .plot() on the axes objects, and we can also use the .set_ methods on each axes.
+
+Let's explore this, make sure this is all in the same cell:
+``` python
+fig,axes = plt.subplots(nrows=1,ncols=2)
+​
+for axe in axes:
+    axe.plot(x,y)
+```
+![16](https://github.com/RiziaPrabin/Python-for-ML/assets/160464556/915f0ca2-b6de-48f3-93c3-204545484152)
+``` python
+fig,axes = plt.subplots(nrows=1,ncols=2)
+axes[0].plot(a,b)
+axes[1].plot(x,y)
+```
+[<matplotlib.lines.Line2D at 0x2352216ce88>]
+![17](https://github.com/RiziaPrabin/Python-for-ML/assets/160464556/1262fcb0-0a93-4339-ada3-91019996d354)
+``` python
+###NOTE! This returns 2 dimensional array
+fig,axes = plt.subplots(nrows=2,ncols=2)
+​
+axes[0][0].plot(a,b)
+axes[1][1].plot(x,y)
+```
+[<matplotlib.lines.Line2D at 0x2352229c648>]
+
+![18](https://github.com/RiziaPrabin/Python-for-ML/assets/160464556/b5093c20-e317-453d-beb9-926701461f40)
+
+A common issue with matplolib is overlapping subplots or figures. We ca use fig.tight_layout() or plt.tight_layout() method, which automatically adjusts the positions of the axes on the figure canvas so that there is no overlapping content:
+``` python
+#NOTE! This returns 2 dimensional array
+fig,axes = plt.subplots(nrows=2,ncols=2)
+​
+axes[0][0].plot(a,b)
+axes[1][1].plot(x,y)  
+​
+plt.tight_layout()
+```
+![19](https://github.com/RiziaPrabin/Python-for-ML/assets/160464556/aad3ff80-c795-4bc9-9da8-e12a690296a8)
+
+### Parameters on subplots()
+Recall we have both the Figure object and the axes. Meaning we can edit properties at both levels.
+``` python
+fig,axes = plt.subplots(nrows=2,ncols=2,figsize=(12,8))
+​
+# SET YOUR AXES PARAMETERS FIRST
+​
+# Parameters at the axes level
+axes[0][0].plot(a,b)
+axes[0][0].set_title('0 0 Title')
+​
+​
+axes[1][1].plot(x,y)
+axes[1][1].set_title('1 1 Title')
+axes[1][1].set_xlabel('1 1 X Label')
+​
+axes[0][1].plot(y,x)
+axes[1][0].plot(b,a)
+​
+# THEN SET OVERALL FIGURE PARAMETERS
+​
+# Parameters at the Figure level
+fig.suptitle("Figure Level",fontsize=16)
+​
+​
+plt.show()
+```
+![20](https://github.com/RiziaPrabin/Python-for-ML/assets/160464556/917a9dff-c903-4010-8af4-f7fa1ea73cce)
+
+### Manual spacing on subplots()
+Use .subplots_adjust to adjust spacing manually.
+Full Details Here: https://matplotlib.org/3.2.2/api/_as_gen/matplotlib.pyplot.subplots_adjust.html
+Example 
+
+left = 0.125 # the left side of the subplots of the figure
+right = 0.9 # the right side of the subplots of the figure
+bottom = 0.1 # the bottom of the subplots of the figure
+top = 0.9 # the top of the subplots of the figure
+wspace = 0.2 # the amount of width reserved for space between subplots,
+        # expressed as a fraction of the average axis width
+hspace = 0.2 # the amount of height reserved for space between subplots,
+        # expressed as a fraction of the average axis height
+``` python
+fig,axes = plt.subplots(nrows=2,ncols=2,figsize=(12,8))
+​
+# Parameters at the axes level
+axes[0][0].plot(a,b)
+axes[1][1].plot(x,y)
+axes[0][1].plot(y,x)
+axes[1][0].plot(b,a)
+​
+# Use left,right,top, bottom to stretch subplots
+# Use wspace,hspace to add spacing between subplots
+fig.subplots_adjust(left=None,
+    bottom=None,
+    right=None,
+    top=None,
+    wspace=0.9,
+    hspace=0.1,)
+​
+plt.show()
+```
+![21](https://github.com/RiziaPrabin/Python-for-ML/assets/160464556/1d2f4e74-732a-4f01-a53d-cf83bebc8264)
+
+## Exporting plt.subplots()
+``` python
+# NOTE! This returns 2 dimensional array
+fig,axes = plt.subplots(nrows=2,ncols=2,figsize=(12,8))
+​
+axes[0][0].plot(a,b)
+axes[1][1].plot(x,y)
+axes[0][1].plot(y,x)
+axes[1][0].plot(b,a)
+​
+fig.savefig('subplots.png',bbox_inches='tight')
+​
+plt.show()
+```
+![22](https://github.com/RiziaPrabin/Python-for-ML/assets/160464556/1f0786fe-3794-4a32-833b-bf7624fe9c7d)
+## Matplotlib-Styling-Plots
+Import the matplotlib.pyplot module under the name plt (the tidy way):
+```python
+# COMMON MISTAKE!
+# DON'T FORGET THE .PYPLOT part
+​
+import matplotlib.pyplot as plt
+```
+NOTE: For users running .py scripts in an IDE like PyCharm or Sublime Text Editor. You will not see the plots in a notebook, instead if you are using another editor, you'll use: plt.show() at the end of all your plotting commands to have the figure pop up in another window.
+
+### The Data
+```python
+import numpy as np
+x = np.arange(0,10)
+y = 2 * x
+```
+### Legends
+You can use the label="label text" keyword argument when plots or other objects are added to the figure, and then using the legend method without arguments to add the legend to the figure:
+```python
+fig = plt.figure()
+​
+ax = fig.add_axes([0,0,1,1])
+​
+ax.plot(x, x**2, label="x**2")
+ax.plot(x, x**3, label="x**3")
+ax.legend()
+```
+<matplotlib.legend.Legend at 0x151b84e0c08>
+![23](https://github.com/RiziaPrabin/Python-for-ML/assets/160464556/8da4555d-5c5f-4eca-9da2-7fcf09a031d7)
+
+Notice how legend could potentially overlap some of the actual plot!
+
+The legend function takes an optional keyword argument loc that can be used to specify where in the figure the legend is to be drawn. The allowed values of loc are numerical codes for the various places the legend can be drawn. See the documentation page for details. Some of the most common loc values are:
+```python
+# Lots of options....
+​
+ax.legend(loc=1) # upper right corner
+ax.legend(loc=2) # upper left corner
+ax.legend(loc=3) # lower left corner
+ax.legend(loc=4) # lower right corner
+​
+# .. many more options are available
+​
+# Most common to choose
+ax.legend(loc=0) # let matplotlib decide the optimal location
+fig
+```
+![24](https://github.com/RiziaPrabin/Python-for-ML/assets/160464556/7f9d62bb-4217-42b7-872e-68a689b6f41b)
+```python
+ax.legend(loc=(1.1,0.5)) # manually set location
+fig
+```
+![25](https://github.com/RiziaPrabin/Python-for-ML/assets/160464556/d0c8dad7-d883-4674-bfca-8380908d3c1a)
+
+### Setting colors, linewidths, linetypes
+Matplotlib gives you a lot of options for customizing colors, linewidths, and linetypes.
+
+There is the basic MATLAB like syntax (which I would suggest you avoid using unless you already feel really comfortable with MATLAB). Instead let's focus on the keyword parameters.
+
+#### Quick View:
+##### Colors with MatLab like syntax
+With matplotlib, we can define the colors of lines and other graphical elements in a number of ways. First of all, we can use the MATLAB-like syntax where 'b' means blue, 'g' means green, etc. The MATLAB API for selecting line styles are also supported: where, for example, 'b.-' means a blue line with dots:
+```python
+# MATLAB style line color and style 
+fig, ax = plt.subplots()
+ax.plot(x, x**2, 'b.-') # blue line with dots
+ax.plot(x, x**3, 'g--') # green dashed line
+```
+[<matplotlib.lines.Line2D at 0x151b8c263c8>]
+![26](https://github.com/RiziaPrabin/Python-for-ML/assets/160464556/2ce7d13a-46df-47f1-a3fc-d254b07039fc)
+
+### Suggested Approach: Use keyword arguments
+#### Colors with the color parameter
+We can also define colors by their names or RGB hex codes and optionally provide an alpha value using the color and alpha keyword arguments. Alpha indicates opacity.
+```python
+fig, ax = plt.subplots()
+​
+ax.plot(x, x+1, color="blue", alpha=0.5) # half-transparant
+ax.plot(x, x+2, color="#8B008B")        # RGB hex code
+ax.plot(x, x+3, color="#FF8C00")        # RGB hex code
+```
+[<matplotlib.lines.Line2D at 0x151b8c7fa08>]
+![27](https://github.com/RiziaPrabin/Python-for-ML/assets/160464556/5f0cfc9f-dd45-40e4-936f-4668579ea318)
+
+### Line and marker styles
+#### Linewidth
+To change the line width, we can use the linewidth or lw keyword argument.
+```python
+fig, ax = plt.subplots(figsize=(12,6))
+​
+# Use linewidth or lw
+ax.plot(x, x-1, color="red", linewidth=0.25)
+ax.plot(x, x-2, color="red", lw=0.50)
+ax.plot(x, x-3, color="red", lw=1)
+ax.plot(x, x-4, color="red", lw=10)
+```
+[<matplotlib.lines.Line2D at 0x151b6dda608>]
+![28](https://github.com/RiziaPrabin/Python-for-ML/assets/160464556/dd2145f0-e06f-422a-8b52-a6ed7f9987eb)
+
+
+#### Linestyles
+There are many linestyles to choose from, here is the selection:
+```python
+# possible linestype options ‘--‘, ‘–’, ‘-.’, ‘:’, ‘steps’
+fig, ax = plt.subplots(figsize=(12,6))
+​
+ax.plot(x, x-1, color="green", lw=3, linestyle='-') # solid
+ax.plot(x, x-2, color="green", lw=3, ls='-.') # dash and dot
+ax.plot(x, x-3, color="green", lw=3, ls=':') # dots
+ax.plot(x, x-4, color="green", lw=3, ls='--') # dashes
+```
+[<matplotlib.lines.Line2D at 0x151b6df5d48>]
+![29](https://github.com/RiziaPrabin/Python-for-ML/assets/160464556/3eea3843-4970-49b1-ae56-7f3d7103a7bd)
+
+#### Custom linestyle dash
+The dash sequence is a sequence of floats of even length describing the length of dashes and spaces in points.
+
+For example, (5, 2, 1, 2) describes a sequence of 5 point and 1 point dashes separated by 2 point spaces.
+
+First, we see we can actually "grab" the line from the .plot() command
+```python
+fig, ax = plt.subplots(figsize=(12,6))
+​
+lines = ax.plot(x,x)
+​
+print(type(lines))
+```
+<class 'list'>
+![30](https://github.com/RiziaPrabin/Python-for-ML/assets/160464556/d05ce2b5-8f77-43d2-891c-65c63c6e9de4)
+```python
+fig, ax = plt.subplots(figsize=(12,6))
+# custom dash
+lines = ax.plot(x, x+8, color="black", lw=5)
+lines[0].set_dashes([10, 10]) # format: line length, space length
+```
+![31](https://github.com/RiziaPrabin/Python-for-ML/assets/160464556/f90bc48a-3747-48c9-9bc9-15692d4c9609)
+```python
+fig, ax = plt.subplots(figsize=(12,6))
+# custom dash
+lines = ax.plot(x, x+8, color="black", lw=5)
+lines[0].set_dashes([1, 1,1,1,10,10]) # format: line length, space length
+```
+### Markers
+We've technically always been plotting points, and matplotlib has been automatically drawing a line between these points for us. Let's explore how to place markers at each of these points.
+
+#### Markers Style
+Huge list of marker types can be found here: https://matplotlib.org/3.2.2/api/markers_api.html
+```python
+fig, ax = plt.subplots(figsize=(12,6))
+​
+# Use marker for string code
+# Use markersize or ms for size
+​
+ax.plot(x, x-1,marker='+',markersize=20)
+ax.plot(x, x-2,marker='o',ms=20) #ms can be used for markersize
+ax.plot(x, x-3,marker='s',ms=20,lw=0) # make linewidth zero to see only markers
+ax.plot(x, x-4,marker='1',ms=20)
+```
+[<matplotlib.lines.Line2D at 0x151b89eed08>]
+![32](https://github.com/RiziaPrabin/Python-for-ML/assets/160464556/549cafcc-3244-4dcd-9dfc-83538e422d7a)
+
+#### Custom marker edges, thickness,size,and style
+```python
+fig, ax = plt.subplots(figsize=(12,6))
+# marker size and color
+ax.plot(x, x, color="black", lw=1, ls='-', marker='s', markersize=20, 
+        markerfacecolor="red", markeredgewidth=8, markeredgecolor="blue");
+```
